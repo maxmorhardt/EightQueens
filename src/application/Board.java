@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Creates the 8 Queens board
+ * This board is a 1d array of the row position of each queen and the index is the column
  * 
  * @author Max Morhardt
  */
@@ -17,7 +18,7 @@ public class Board {
 	private int[] board;
 	
 	/**
-	 * Constructor no params
+	 * Constructor for a completely new board
 	 */
 	public Board() {
 		board = new int[BOARD_SIZE];
@@ -25,7 +26,7 @@ public class Board {
 	}
 	
 	/**
-	 * Constructor with given board
+	 * Constructor given a board
 	 */
 	public Board(int[] board) {
 		this.board = board;

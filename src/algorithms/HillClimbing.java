@@ -1,8 +1,6 @@
 package algorithms;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import application.Board;
 
 /**
@@ -10,59 +8,32 @@ import application.Board;
  * 
  * @author Max Morhardt
  */
-public class HillClimbing {
+public class HillClimbing extends Algorithm {
 	
-	/**
-	 * Calculates the pairs of queens in conflict
-	 * 
-	 * @param board object
-	 * @return heuristic
-	 */
-	public int calculateHeuristic(Board b) {
-		int[] board = b.getBoard();
-		int heuristic = 0;
-		for (int i = 0; i < board.length-1; i++) {
-			for (int j = i+1; j < board.length; j++) {
-				// Checks diagonal
-				if (board[j] - j == board[i] - i) {
-					heuristic++;
-				}
-				// Checks diagonal
-				if (board[j] + j == board[i] + i) {
-					heuristic++;
-				}
-				// Checks row
-				if (board[i] == board[j]) {
-					heuristic++;
+	private boolean randomRestart;
+	private int numRestarts;
+	
+	public HillClimbing(boolean randomRestart) {
+		this.randomRestart = randomRestart;
+		numRestarts = 0;
+	}
+
+	@Override
+	protected Board algorithm(Board b) {
+		Board currBoard = b;
+		while(true) {
+			int currHeuristic = calculateHeuristic(b);
+			List<Board> successors = generateSuccessors(currBoard);
+			for (Board successor : successors) {
+				int successorHeuristic = calculateHeuristic(successor);
+				if (successorHeuristic == 0) {
+					return successor;
+				} else if (successorHeuristic < currHeuristic) {
+					currBoard = successor;
+					currHeuristic = successorHeuristic;
 				}
 			}
 		}
-		return heuristic;
-	}
-	
-	/**
-	 * Generates all successors for a given board
-	 * 
-	 * @param board object
-	 * @return list of boards
-	 */
-	private static List<Board> generateSuccessors(Board b) {
-		int[] board = b.getBoard();
-		List<Board> successors = new ArrayList<>();
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board.length; j++) {
-				Board successor = new Board(board);
-				if (j != successor.getBoard()[i]) {
-					successor.setQueen(i,j);
-					successors.add(successor);
-				}
-			}
-		}
-		return successors;
-	}
-	
-	public void algorithm(Board b, boolean randomRestart) {
-		
 	}
 	
 }
