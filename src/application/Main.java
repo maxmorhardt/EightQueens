@@ -1,5 +1,10 @@
 package application;
 
+/**
+ * Main class
+ * 
+ * @author Max Morhardt
+ */
 public class Main {
 	
 	private static Board board;

@@ -1,4 +1,5 @@
 package application;
+
 import java.util.Random;
 
 /**
@@ -13,14 +14,13 @@ public class Board {
 	private final int MAX_NUM_QUEENS = 8;
 	
 	// Variables
-	private int[][] board;
+	private int[] board;
 	
 	/**
-	 * Constructor
+	 * Constructor no params
 	 */
 	public Board() {
-		board = new int[BOARD_SIZE][BOARD_SIZE];
-		initBoard();
+		board = new int[BOARD_SIZE];
 		addQueens();
 	}
 	
@@ -37,23 +37,12 @@ public class Board {
 	}
 	
 	/**
-	 * Initializes the board
-	 */
-	private void initBoard() {
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board.length; j++) {
-				board[i][j] = 0;
-			}
-		}
-	}
-	
-	/**
 	 * Adds all 8 queens to the board
 	 */
 	private void addQueens() {
-		for (int col = 0; col < MAX_NUM_QUEENS; col++) {
+		for (int col = 0; col < board.length; col++) {
 			int row = getRandomNumber(0, MAX_NUM_QUEENS-1);
-			board[row][col] = 1;
+			board[col] = row;
 		}
 	}
 	
@@ -62,7 +51,7 @@ public class Board {
 	 * 
 	 * @param board
 	 */
-	public void setBoard(int[][] board) {
+	public void setBoard(int[] board) {
 		this.board = board;
 	}
 	
@@ -71,7 +60,7 @@ public class Board {
 	 * 
 	 * @return board
 	 */
-	public int[][] getBoard() {
+	public int[] getBoard() {
 		return board;
 	}
 	
@@ -79,9 +68,13 @@ public class Board {
 	 * Prints the board
 	 */
 	public void printBoard() {
+		int[][] fullBoard =  new int[BOARD_SIZE][BOARD_SIZE];
+		for (int i = 0; i < fullBoard.length; i++) {
+			fullBoard[board[i]][i] = 1;
+		}
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				if (board[i][j] == 0) {
+				if (fullBoard[i][j] == 0) {
 					System.out.print("-");
 				}
 				else {
