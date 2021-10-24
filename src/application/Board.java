@@ -25,6 +25,13 @@ public class Board {
 	}
 	
 	/**
+	 * Constructor with given board
+	 */
+	public Board(int[] board) {
+		this.board = board;
+	}
+	
+	/**
 	 * Returns a random int inside of a certain range
 	 * 
 	 * @param min
@@ -51,8 +58,8 @@ public class Board {
 	 * 
 	 * @param board
 	 */
-	public void setBoard(int[] board) {
-		this.board = board;
+	public void setQueen(int col, int row) {
+		board[col] = row;
 	}
 	
 	/**

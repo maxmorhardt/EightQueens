@@ -1,5 +1,8 @@
 package algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import application.Board;
 
 /**
@@ -9,6 +12,12 @@ import application.Board;
  */
 public class HillClimbing {
 	
+	/**
+	 * Calculates the pairs of queens in conflict
+	 * 
+	 * @param board object
+	 * @return heuristic
+	 */
 	public int calculateHeuristic(Board b) {
 		int[] board = b.getBoard();
 		int heuristic = 0;
@@ -31,7 +40,28 @@ public class HillClimbing {
 		return heuristic;
 	}
 	
-	public void algorithm(Board b) {
+	/**
+	 * Generates all successors for a given board
+	 * 
+	 * @param board object
+	 * @return list of boards
+	 */
+	private static List<Board> generateSuccessors(Board b) {
+		int[] board = b.getBoard();
+		List<Board> successors = new ArrayList<>();
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				Board successor = new Board(board);
+				if (j != successor.getBoard()[i]) {
+					successor.setQueen(i,j);
+					successors.add(successor);
+				}
+			}
+		}
+		return successors;
+	}
+	
+	public void algorithm(Board b, boolean randomRestart) {
 		
 	}
 	
