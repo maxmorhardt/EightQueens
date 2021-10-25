@@ -61,8 +61,6 @@ public class HillClimbing {
 	/**
 	 * Generates all successors for a given board
 	 * 
-	 * WHY IS B UPDATING???
-	 * 
 	 * @param board object
 	 * @return list of boards
 	 */
@@ -74,15 +72,10 @@ public class HillClimbing {
 				if (board[col] != row) {
 					Board successor = new Board(b.getBoard());
 					successor.setQueen(col, row);
-					b.printBoard();
-					System.out.println();
-					successor.printBoard();
-					System.out.println();
 					successors.add(successor);
 				}
 			}
 		}
-		System.out.println(successors.size());
 		return successors;
 	}
 	

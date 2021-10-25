@@ -55,7 +55,7 @@ public class Board {
 	}
 	
 	/**
-	 * Setter for the board
+	 * Setter for a specific queen
 	 * 
 	 * @param board
 	 */
@@ -69,7 +69,7 @@ public class Board {
 	 * @return board
 	 */
 	public int[] getBoard() {
-		return board;
+		return board.clone();
 	}
 	
 	/**
