@@ -61,17 +61,23 @@ public class HillClimbing {
 	/**
 	 * Generates all successors for a given board
 	 * 
+	 * WHY IS B UPDATING???
+	 * 
 	 * @param board object
 	 * @return list of boards
 	 */
-	private static List<Board> generateSuccessors(Board b) {
+	private List<Board> generateSuccessors(Board b) {
 		int[] board = b.getBoard();
 		List<Board> successors = new ArrayList<>();
-		for (int i = 0; i < board.length; i++) { 
-			for (int j = 0; j < board.length; j++) {
-				Board successor = new Board(board);
-				if () {
-					successor.setQueen(i, j);
+		for (int col = 0; col < b.getBoard().length; col++) { 
+			for (int row = 0; row < b.getBoard().length; row++) {
+				if (board[col] != row) {
+					Board successor = new Board(b.getBoard());
+					successor.setQueen(col, row);
+					b.printBoard();
+					System.out.println();
+					successor.printBoard();
+					System.out.println();
 					successors.add(successor);
 				}
 			}
