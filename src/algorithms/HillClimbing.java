@@ -48,15 +48,24 @@ public class HillClimbing extends Algorithm {
 				} 
 			}
 			searchCost++;
-			// No better successor was found so restart
+			// No better successor was found with random restart
 			if (!isLocalMin && randomRestart) {
 				currBoard = new Board();
+				numRestarts++;
 			// No better successor was found without random restart
 			} else {
 				return currBoard;
 			}
 		}
-		
+	}
+	
+	/**
+	 * Getter for the number of random restarts
+	 * 
+	 * @return number of restarts
+	 */
+	public int getNumRestarts() {
+		return numRestarts;
 	}
 	
 }

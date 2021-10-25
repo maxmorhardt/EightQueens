@@ -23,7 +23,7 @@ public abstract class Algorithm {
 	
 	/**
 	 * Calculates the pairs of queens in conflict
-	 * This should be protected, but I wanna test it and don't know how to do both
+	 * (This should be protected, but I wanna test it and don't know how to do both)
 	 * 
 	 * @param board object
 	 * @return heuristic
