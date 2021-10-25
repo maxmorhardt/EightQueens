@@ -10,7 +10,7 @@ import application.Board;
  */
 public class HillClimbing extends Algorithm {
 	
-	
+	// Variable for whether or not the algorithm was completed
 	private boolean didSolve;
 	
 	/**
@@ -34,20 +34,23 @@ public class HillClimbing extends Algorithm {
 		Board currBoard = b;
 		
 		// Runs until local min or a solution is reached
-		while(true) {
+		boolean continueSearch = true;
+		while(continueSearch) {
 			int currHeuristic = calculateHeuristic(currBoard);
 			boolean isLocalMin = true;
 			List<Board> successors = generateSuccessors(currBoard);
 			
 			// Looks at all successors
 			for (Board successor : successors) {
+				searchCost++;
 				int successorHeuristic = calculateHeuristic(successor);
+				
 				// Solution is found
 				if (successorHeuristic == 0) {
 					currBoard = successor;
 					currHeuristic = successorHeuristic;
 					didSolve = true;
-					break;
+					continueSearch = false;
 					
 				// If the successor is better than the current board
 				} else if (successorHeuristic < currHeuristic) {
@@ -55,16 +58,19 @@ public class HillClimbing extends Algorithm {
 					currHeuristic = successorHeuristic;
 					isLocalMin = false;
 				} 
-				searchCost++;
 			} 
 			// If all successors heuristics are >= the current
-			if (isLocalMin) {
-				break;
+			if (isLocalMin && continueSearch) {
+				continueSearch = false;
 			}
 		}
 		return currBoard;
 	}
 	
+	/**
+	 * Getter for if the puzzle was solved
+	 * @return did solve
+	 */
 	public boolean getDidSolve() {
 		return didSolve;
 	}

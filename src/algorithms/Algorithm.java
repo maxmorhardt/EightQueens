@@ -5,10 +5,19 @@ import java.util.List;
 
 import application.Board;
 
+/**
+ * Abstract class for an algorithm
+ * 
+ * @author Max Morhardt
+ */
 public abstract class Algorithm {
 	
+	// Search cost needed to solve
 	protected int searchCost;
 	
+	/**
+	 * Constructor
+	 */
 	protected Algorithm() {
 		searchCost = 0;
 	}
@@ -63,10 +72,20 @@ public abstract class Algorithm {
 		return successors;
 	}
 	
+	/**
+	 * Getter for the search cost
+	 * @return search cost
+	 */
 	public int getSearchCost() {
 		return searchCost;
 	}
 	
-	protected abstract Board solve(Board b);
+	/**
+	 * Abstract method for each algorithm to solve the puzzle
+	 * 
+	 * @param board
+	 * @return solved board
+	 */
+	public abstract Board solve(Board b);
 
 }

@@ -4,10 +4,25 @@ import java.util.List;
 
 import application.Board;
 
+/**
+ * Class for the hill climbing algorithm using random restarts
+ * 
+ * @author Max Morhardt
+ */
 public class HillClimbingRandomRestart extends Algorithm {
 	
+	// Variables
+	private int numRestarts;
+	
 	/**
-	 * Solves the 8 queens with hill climbing
+	 * Constructor
+	 */
+	public HillClimbingRandomRestart() {
+		numRestarts = 0;
+	}
+	
+	/**
+	 * Solves the 8 queens with hill climbing and random restarts
 	 * 
 	 * @param board object
 	 * @return final board
@@ -25,7 +40,9 @@ public class HillClimbingRandomRestart extends Algorithm {
 			
 			// Looks at all successors
 			for (Board successor : successors) {
+				searchCost++;
 				int successorHeuristic = calculateHeuristic(successor);
+				
 				// Solution is found
 				if (successorHeuristic == 0) {
 					currBoard = successor;
@@ -40,11 +57,21 @@ public class HillClimbingRandomRestart extends Algorithm {
 				} 
 			} 
 			// If all successors heuristics are >= the current
-			if (isLocalMin) {
-				//didSolve = false;
-				continueSearch = false;
+			if (isLocalMin && continueSearch) {
+				numRestarts++;
+				currBoard = new Board();
 			}
 		}
 		return currBoard;
 	}
+	
+	/**
+	 * Getter for the number of random restarts done
+	 * 
+	 * @return number of restarts
+	 */
+	public int getnumRestarts() {
+		return numRestarts;
+	}
+	
 }
