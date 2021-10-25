@@ -12,8 +12,7 @@ import application.Board;
  */
 class HeuristicTests {
 	
-	// Param doesnt matter for tests
-	HillClimbing hc = new HillClimbing(false);
+	HillClimbing hc = new HillClimbing();
 	
 	/**
 	 * All heuristic tests were calculated manually

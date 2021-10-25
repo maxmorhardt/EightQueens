@@ -1,27 +1,10 @@
 package algorithms;
 
 import java.util.List;
+
 import application.Board;
 
-/**
- * Class for the hill climbing algorithm
- * 
- * @author Max Morhardt
- */
-public class HillClimbing extends Algorithm {
-	
-	
-	private boolean didSolve;
-	
-	/**
-	 * Constructor for hill climbing with a random restart option
-	 * 
-	 * @param randomRestart
-	 */
-	public HillClimbing() {
-		super();
-		didSolve = false;
-	}
+public class HillClimbingRandomRestart extends Algorithm {
 	
 	/**
 	 * Solves the 8 queens with hill climbing
@@ -34,7 +17,8 @@ public class HillClimbing extends Algorithm {
 		Board currBoard = b;
 		
 		// Runs until local min or a solution is reached
-		while(true) {
+		boolean continueSearch = true;
+		while(continueSearch) {
 			int currHeuristic = calculateHeuristic(currBoard);
 			boolean isLocalMin = true;
 			List<Board> successors = generateSuccessors(currBoard);
@@ -46,8 +30,7 @@ public class HillClimbing extends Algorithm {
 				if (successorHeuristic == 0) {
 					currBoard = successor;
 					currHeuristic = successorHeuristic;
-					didSolve = true;
-					break;
+					continueSearch = false;
 					
 				// If the successor is better than the current board
 				} else if (successorHeuristic < currHeuristic) {
@@ -58,14 +41,10 @@ public class HillClimbing extends Algorithm {
 			} 
 			// If all successors heuristics are >= the current
 			if (isLocalMin) {
-				break;
+				//didSolve = false;
+				continueSearch = false;
 			}
 		}
 		return currBoard;
 	}
-	
-	public boolean getDidSolve() {
-		return didSolve;
-	}
-	
 }
