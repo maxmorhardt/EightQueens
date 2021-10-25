@@ -79,12 +79,6 @@ public class HillClimbing {
 		return successors;
 	}
 	
-	public void successorTest() {
-		Board b = new Board(new int[] {1,1,1,1,1,1,1,1});
-		List<Board> successors = generateSuccessors(b);
-		//successors.get(55).printBoard();
-	}
-	
 	/**
 	 * Abstract method to solve the 8 queens given a specific algorithm
 	 * 
@@ -94,25 +88,28 @@ public class HillClimbing {
 	public Board algorithm(Board b) {
 		// Init board
 		Board currBoard = b;
+		
 		// Runs until local min or a solution is reached
 		boolean continueSearch = true;
 		while(continueSearch) {
 			int currHeuristic = calculateHeuristic(b);
 			List<Board> successors = generateSuccessors(currBoard);
+			
 			// Looks at all successors
 			for (Board successor : successors) {
 				int successorHeuristic = calculateHeuristic(successor);
 				// Solution is found
 				if (successorHeuristic == 0) {
 					continueSearch = false;
+					
 				// If the successor is better than the current board
 				} else if (successorHeuristic < currHeuristic) {
 					currBoard = successor;
 					currHeuristic = successorHeuristic;
-				} 
-			}
-		}
-		return null;
-	}
+				} // End if 
+			} // End loop
+		} // End loop
+		return currBoard;
+	} // End method
 	
-}
+} // End class
