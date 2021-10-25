@@ -95,6 +95,7 @@ public class EightQueens {
 		double averageSearch = searchCostTotal/numPuzzles;
 		double averageSearchWithRestart = searchCostTotalWithRestart/numPuzzles;
 		double averageRestarts = totalRestarts/numPuzzles;
+		
 		System.out.println();
 		System.out.println(numPuzzles + " Puzzles");
 		System.out.println("Hill Climbing: " + passRate + "% solved, average search cost: " + averageSearch);

@@ -26,7 +26,7 @@ public abstract class Algorithm {
 	 * Calculates the pairs of queens in conflict
 	 * (This should be protected, but I wanna test it and don't know how to do both)
 	 * 
-	 * @param board object
+	 * @param board
 	 * @return heuristic
 	 */
 	public int calculateHeuristic(Board b) {
@@ -54,7 +54,7 @@ public abstract class Algorithm {
 	/**
 	 * Generates all successors for a given board
 	 * 
-	 * @param board object
+	 * @param board
 	 * @return list of boards
 	 */
 	protected List<Board> generateSuccessors(Board b) {
@@ -74,6 +74,7 @@ public abstract class Algorithm {
 	
 	/**
 	 * Getter for the search cost
+	 * 
 	 * @return search cost
 	 */
 	public int getSearchCost() {

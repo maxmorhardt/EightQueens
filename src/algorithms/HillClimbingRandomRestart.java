@@ -11,7 +11,7 @@ import application.Board;
  */
 public class HillClimbingRandomRestart extends Algorithm {
 	
-	// Variables
+	// Number of restarts
 	private int numRestarts;
 	
 	/**
@@ -24,7 +24,7 @@ public class HillClimbingRandomRestart extends Algorithm {
 	/**
 	 * Solves the 8 queens with hill climbing and random restarts
 	 * 
-	 * @param board object
+	 * @param board
 	 * @return final board
 	 */
 	public Board solve(Board b) {
