@@ -15,6 +15,8 @@ public class EightQueens {
 	 * Main method
 	 */
 	public static void main(String[] args) {
+		new HillClimbing(false).successorTest();
+		/*
 		Board initialBoard = new Board();
 		HillClimbing hc = new HillClimbing(false);
 		initialBoard.printBoard();
@@ -23,5 +25,6 @@ public class EightQueens {
 		finalBoard.printBoard();
 		System.out.println();
 		System.out.println(hc.calculateHeuristic(finalBoard));
+		*/
 	}
 }

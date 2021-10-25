@@ -12,12 +12,12 @@ import application.Board;
 public class HillClimbing {
 	
 	// Number of searches done to find a solution or fail
-	private int searchCost;
+	//private int searchCost;
 	
 	
 	// Variables
-	private boolean randomRestart;
-	private int numRestarts;
+	//private boolean randomRestart;
+	//private int numRestarts;
 	
 	/**
 	 * Constructor for hill climbing with a random restart option
@@ -25,8 +25,8 @@ public class HillClimbing {
 	 * @param randomRestart
 	 */
 	public HillClimbing(boolean randomRestart) {
-		this.randomRestart = randomRestart;
-		numRestarts = 0;
+		//this.randomRestart = randomRestart;
+		//numRestarts = 0;
 	}
 	
 	/**
@@ -64,19 +64,26 @@ public class HillClimbing {
 	 * @param board object
 	 * @return list of boards
 	 */
-	protected static List<Board> generateSuccessors(Board b) {
+	private static List<Board> generateSuccessors(Board b) {
 		int[] board = b.getBoard();
 		List<Board> successors = new ArrayList<>();
-		for (int i = 0; i < board.length; i++) {
+		for (int i = 0; i < board.length; i++) { 
 			for (int j = 0; j < board.length; j++) {
 				Board successor = new Board(board);
-				if (j != successor.getBoard()[i]) {
-					successor.setQueen(i,j);
+				if () {
+					successor.setQueen(i, j);
 					successors.add(successor);
 				}
 			}
 		}
+		System.out.println(successors.size());
 		return successors;
+	}
+	
+	public void successorTest() {
+		Board b = new Board(new int[] {1,1,1,1,1,1,1,1});
+		List<Board> successors = generateSuccessors(b);
+		//successors.get(55).printBoard();
 	}
 	
 	/**
@@ -89,51 +96,24 @@ public class HillClimbing {
 		// Init board
 		Board currBoard = b;
 		// Runs until local min or a solution is reached
-		while(true) {
+		boolean continueSearch = true;
+		while(continueSearch) {
 			int currHeuristic = calculateHeuristic(b);
 			List<Board> successors = generateSuccessors(currBoard);
-			boolean isLocalMin = false;
 			// Looks at all successors
 			for (Board successor : successors) {
 				int successorHeuristic = calculateHeuristic(successor);
 				// Solution is found
 				if (successorHeuristic == 0) {
-					return successor;
+					continueSearch = false;
 				// If the successor is better than the current board
 				} else if (successorHeuristic < currHeuristic) {
 					currBoard = successor;
 					currHeuristic = successorHeuristic;
-					isLocalMin = true;
 				} 
 			}
-			searchCost++;
-			// No better successor was found with random restart
-			if (!isLocalMin && randomRestart) {
-				currBoard = new Board();
-				numRestarts++;
-			// No better successor was found without random restart
-			} else if (!isLocalMin) {
-				return currBoard;
-			}
 		}
-	}
-	
-	/**
-	 * Getter for the number of random restarts
-	 * 
-	 * @return number of restarts
-	 */
-	public int getNumRestarts() {
-		return numRestarts;
-	}
-	
-	/**
-	 * Getter for the search cost
-	 * 
-	 * @return search cost
-	 */
-	public int getSearchCost() {
-		return searchCost;
+		return null;
 	}
 	
 }
