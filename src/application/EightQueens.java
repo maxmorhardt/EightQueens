@@ -70,19 +70,27 @@ public class EightQueens {
 			if (visualizeBoards == 1) {
 				// Initial board
 				System.out.println();
-				System.out.println(puzzleCounter);
-				System.out.println("Initial no restart");
+				System.out.println(puzzleCounter + ":");
+				System.out.println("\nInitial board");
+				int heuristic = hc.calculateHeuristic(initialBoard);
+				System.out.println("Heuristic: " + heuristic);
 				initialBoard.printBoard();
 				
 				// Final without restart
 				System.out.println();
-				System.out.println("Final no restart");
+				System.out.println("Final board no restart");
+				heuristic = hc.calculateHeuristic(finalBoardNoRestart);
+				int steps = hc.getSearchCost();
+				System.out.println("Heuristic: " + heuristic + ", Steps: " + steps);
 				finalBoardNoRestart.printBoard();
 				System.out.println();
 				
 				// Final with restart
 				System.out.println();
-				System.out.println("Final with restart");
+				System.out.println("Final board with restart");
+				heuristic = hcrr.calculateHeuristic(finalBoardWithRestart);
+				steps = hcrr.getSearchCost();
+				System.out.println("Heuristic: " + heuristic + ", Steps: " + steps);
 				finalBoardWithRestart.printBoard();
 				System.out.println();
 				System.out.println("-------------------------------------");
@@ -91,10 +99,10 @@ public class EightQueens {
 		}
 		
 		// Prints statistics
-		double passRate = 100*(numPassed/numPuzzles);
-		double averageSearch = searchCostTotal/numPuzzles;
-		double averageSearchWithRestart = searchCostTotalWithRestart/numPuzzles;
-		double averageRestarts = totalRestarts/numPuzzles;
+		double passRate = Math.round(100*(numPassed/numPuzzles));
+		double averageSearch = Math.round(searchCostTotal/numPuzzles);
+		double averageSearchWithRestart = Math.round(searchCostTotalWithRestart/numPuzzles);
+		double averageRestarts = Math.round(totalRestarts/numPuzzles);
 		
 		System.out.println();
 		System.out.println(numPuzzles + " Puzzles");
