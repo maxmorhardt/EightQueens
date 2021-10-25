@@ -10,30 +10,53 @@ import application.Board;
  */
 public class HillClimbing extends Algorithm {
 	
+	// Variables
 	private boolean randomRestart;
 	private int numRestarts;
 	
+	/**
+	 * Constructor for hill climbing with a random restart option
+	 * 
+	 * @param randomRestart
+	 */
 	public HillClimbing(boolean randomRestart) {
+		super();
 		this.randomRestart = randomRestart;
 		numRestarts = 0;
 	}
 
 	@Override
 	protected Board algorithm(Board b) {
+		// Init board
 		Board currBoard = b;
+		// Runs until local min or a solution is reached
 		while(true) {
 			int currHeuristic = calculateHeuristic(b);
 			List<Board> successors = generateSuccessors(currBoard);
+			boolean isLocalMin = false;
+			// Looks at all successors
 			for (Board successor : successors) {
 				int successorHeuristic = calculateHeuristic(successor);
+				// Solution is found
 				if (successorHeuristic == 0) {
 					return successor;
+				// If the successor is better than the current board
 				} else if (successorHeuristic < currHeuristic) {
 					currBoard = successor;
 					currHeuristic = successorHeuristic;
-				}
+					isLocalMin = true;
+				} 
+			}
+			searchCost++;
+			// No better successor was found so restart
+			if (!isLocalMin && randomRestart) {
+				currBoard = new Board();
+			// No better successor was found without random restart
+			} else {
+				return currBoard;
 			}
 		}
+		
 	}
 	
 }

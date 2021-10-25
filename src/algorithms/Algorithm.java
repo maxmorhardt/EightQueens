@@ -11,8 +11,19 @@ import application.Board;
  */
 public abstract class Algorithm {
 	
+	// Number of searches done to find a solution or fail
+	protected int searchCost;
+	
+	/**
+	 * Constructor
+	 */
+	public Algorithm() {
+		searchCost = 0;
+	}
+	
 	/**
 	 * Calculates the pairs of queens in conflict
+	 * This should be protected, but I wanna test it and don't know how to do both
 	 * 
 	 * @param board object
 	 * @return heuristic
@@ -58,6 +69,15 @@ public abstract class Algorithm {
 			}
 		}
 		return successors;
+	}
+	
+	/**
+	 * Getter for the search cost
+	 * 
+	 * @return search cost
+	 */
+	public int getSearchCost() {
+		return searchCost;
 	}
 	
 	/**
