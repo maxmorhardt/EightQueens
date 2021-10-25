@@ -1,12 +1,7 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
-
-import algorithms.Algorithm;
 import algorithms.HillClimbing;
 import application.Board;
 
@@ -18,7 +13,7 @@ import application.Board;
 class HeuristicTests {
 	
 	// Param doesnt matter for tests
-	Algorithm hc = new HillClimbing(false);
+	HillClimbing hc = new HillClimbing(false);
 	
 	/**
 	 * All heuristic tests were calculated manually
