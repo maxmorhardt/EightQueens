@@ -55,6 +55,7 @@ public class HillClimbing extends Algorithm {
 					currHeuristic = successorHeuristic;
 					isLocalMin = false;
 				} 
+				searchCost++;
 			} 
 			// If all successors heuristics are >= the current
 			if (isLocalMin) {
