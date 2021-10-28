@@ -1,7 +1,6 @@
 package algorithms;
 
 import java.util.List;
-
 import application.Board;
 
 /**
@@ -18,6 +17,7 @@ public class HillClimbingRandomRestart extends Algorithm {
 	 * Constructor
 	 */
 	public HillClimbingRandomRestart() {
+		super();
 		numRestarts = 0;
 	}
 	
